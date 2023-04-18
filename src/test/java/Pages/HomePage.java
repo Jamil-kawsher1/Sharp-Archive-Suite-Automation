@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,7 @@ public class HomePage {
     //getting all Signup button list
 
     @FindBy(linkText = "Sign Up")
-    List <WebElement> signUp;
+    List<WebElement> signUp;
 
     //User Signup Fields
 
@@ -34,25 +35,93 @@ public class HomePage {
     WebElement businessName;
 
     //Selecting options
-   @FindBy(id = "selectStyleId")
+    @FindBy(id = "selectStyleId")
     WebElement selectTag;
+    public Select select;
 
 
+    //cookie accept button
+    @FindBy(tagName = "button")
+    public List<WebElement> cookieAcceptButton;
+
+    //terms condition checkbox
+
+    @FindBy(className = "form-checkbox")
+    List<WebElement> checkBox;
+
+    //NEXT button
+    @FindBy(className = "btn")
+    WebElement nextButton;
 
 
+    //otp  fields
+    @FindBy(id = "otp1")
+ public   WebElement otp;
 
     // page Factory Function initialization so that null or element not found issue can avoid
-    public HomePage(WebDriver driver){
-        PageFactory.initElements(driver,this);
+    public HomePage (WebDriver driver) {
+        PageFactory.initElements(driver, this);
 
     }
-    public void signUp(){
 
+    public void signUp (String firstName, String lastName, String email, String businessName, String password, String category) throws InterruptedException {
+        cookieAcceptButton.get(35).click();
         signUp.get(0).click();
-        //Creating Select object
-        Select select = new Select(selectTag);
-        //Selecting new value
-        select.selectByValue("Education");
+
+        this.firstName.sendKeys(firstName);
+        this.lastName.sendKeys(lastName);
+        this.email.sendKeys("jamilkawsher@gmail.com");
+        this.password.sendKeys(password);
+        this.businessName.sendKeys(businessName);
+        selectTag.click();
+
+
+        if (category.equals("Financial Services")) {
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ENTER);
+        } else if (category.equals("Healthcare")) {
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            selectTag.sendKeys(Keys.ENTER);
+
+        } else if (category.equals("Education")) {
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            selectTag.sendKeys(Keys.ENTER);
+        } else if (category.equals("Government")) {
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            selectTag.sendKeys(Keys.ENTER);
+        } else if (category.equals("Other")) {
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            Thread.sleep(500);
+            selectTag.sendKeys(Keys.ARROW_DOWN);
+            selectTag.sendKeys(Keys.ENTER);
+        }
+        checkBox.get(0).click();
+        nextButton.click();
+
+//        //Creating Select object
+//        select = new Select(selectTag);
+//        //Selecting new value
+//        select.selectByIndex(1);
+
 
     }
 
