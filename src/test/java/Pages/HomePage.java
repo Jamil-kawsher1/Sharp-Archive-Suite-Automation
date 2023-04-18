@@ -65,12 +65,13 @@ public class HomePage {
     }
 
     public void signUp (String firstName, String lastName, String email, String businessName, String password, String category) throws InterruptedException {
+        Thread.sleep(3000);
         cookieAcceptButton.get(35).click();
         signUp.get(0).click();
 
         this.firstName.sendKeys(firstName);
         this.lastName.sendKeys(lastName);
-        this.email.sendKeys("jamilkawsher@gmail.com");
+        this.email.sendKeys(email);
         this.password.sendKeys(password);
         this.businessName.sendKeys(businessName);
         selectTag.click();
