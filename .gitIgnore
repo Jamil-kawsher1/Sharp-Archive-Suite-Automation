@@ -1,0 +1,10 @@
+.gradle
+.idea
+build
+gradle
+gradlew
+gradlew.bat
+settings.gradle
+allure-report
+allure-results
+src/test/Pages/DasboardPage.java
