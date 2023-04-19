@@ -88,6 +88,10 @@ public class HomePage {
     List <WebElement> allButton;
 
 
+    //Profile Controls
+    @FindBy(className = "name-color")
+    WebElement profileName;
+
     public void signUp (String firstName, String lastName, String email, String businessName, String password, String category) throws InterruptedException, IOException, ParseException {
         Thread.sleep(3000);
         cookieAcceptButton.get(35).click();
@@ -177,7 +181,13 @@ public class HomePage {
         //Clicking on back button
         allButton.get(8).click();
         Thread.sleep(1000);
+        //clicking on cancel button
         allButton.get(6).click();
+
+    }
+
+    public void profilePictureUpload(){
+        profileName.click();
 
     }
 

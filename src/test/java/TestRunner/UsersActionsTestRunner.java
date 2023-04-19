@@ -13,19 +13,28 @@ import java.io.IOException;
 
 public class UsersActionsTestRunner extends Setup {
     public HomePage homePage;
-    @BeforeTest
-    public void doLogin() throws InterruptedException, IOException, ParseException {
 
-        homePage=new HomePage(driver);
+    @BeforeTest
+    public void doLogin () throws InterruptedException, IOException, ParseException {
+
+        homePage = new HomePage(driver);
         String filename = "./src/test/resources/UsersList.json";
         JSONObject userInfo = Utils.readJSONFile(filename, 1);
         homePage.cookieAcceptButton.get(35).click();
         homePage.doLogin((String) userInfo.get("email"), "Eb9C*f\"A2om]nP2");
     }
-    @Test
-    public void addFeed() throws InterruptedException {
-homePage=new HomePage(driver);
-homePage.AddFeeds();
+
+    @Test(priority = 1, description = "Add New Feed To User Accounts")
+    public void addFeed () throws InterruptedException {
+        homePage = new HomePage(driver);
+        homePage.AddFeeds();
+
+    }
+
+    @Test(priority = 2, description = "Upload User Profile picture")
+    public void uploadProfilePicture () {
+        homePage = new HomePage(driver);
+        homePage.profilePictureUpload();
 
     }
 }
