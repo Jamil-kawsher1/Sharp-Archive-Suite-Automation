@@ -15,7 +15,8 @@ public class HomePage {
 
     @FindBy(linkText = "Sign Up")
     List<WebElement> signUp;
-
+    @FindBy(tagName = "button")
+    List<WebElement> buttons;
     //User Signup Fields
 
     //First Name
@@ -56,13 +57,23 @@ public class HomePage {
 
     //otp  fields
     @FindBy(id = "otp1")
- public   WebElement otp;
+    public WebElement otp;
 
     // page Factory Function initialization so that null or element not found issue can avoid
     public HomePage (WebDriver driver) {
         PageFactory.initElements(driver, this);
 
     }
+
+    // all input field for generic use
+    @FindBy(tagName = "input")
+    List<WebElement> allInput;
+
+    @FindBy(css = "input[placeholder='Email']")
+     WebElement emailLogin;
+    @FindBy(css = "input[placeholder='Password']")
+    WebElement passLogin;
+
 
     public void signUp (String firstName, String lastName, String email, String businessName, String password, String category) throws InterruptedException {
         Thread.sleep(3000);
@@ -123,6 +134,21 @@ public class HomePage {
 //        //Selecting new value
 //        select.selectByIndex(1);
 
+
+    }
+
+    public void doLogin () throws InterruptedException {
+    //login button
+        buttons.get(3).click();
+        Thread.sleep(3000);
+    //email
+        emailLogin.sendKeys("shirleycollinse7@gmail.com");
+
+    //password
+        passLogin.sendKeys("wXh4b9BYmpw9pg2@");
+
+    //click ol login Button
+        buttons.get(34).click();
 
     }
 

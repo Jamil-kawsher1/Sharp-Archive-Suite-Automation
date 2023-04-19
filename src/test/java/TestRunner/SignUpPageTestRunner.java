@@ -13,6 +13,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
 public class SignUpPageTestRunner extends Setup {
@@ -43,7 +45,7 @@ public class SignUpPageTestRunner extends Setup {
     public String getPhoneOTP () throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         driver.switchTo().window((String) driver.getWindowHandles().toArray()[2]);
-        driver.get("https://receive-sms-online.cc/Free-US-Phone-Number-14133248551");
+        driver.get("https://receive-sms-online.cc/Free-US-Phone-Number-17404630034");
 
         Thread.sleep(6000);
         //clicking on Sms refresh button
@@ -93,7 +95,7 @@ public class SignUpPageTestRunner extends Setup {
         Thread.sleep(2000);
         homePage.otp.sendKeys(verificationCode);
         Thread.sleep(1000);
-        String desiredPhoneNumber = "4133248551";
+        String desiredPhoneNumber = "7404630034";
         driver.findElement((By.id("number-input"))).sendKeys(desiredPhoneNumber);
         Thread.sleep(3000);
         driver.findElements(By.tagName("button")).get(11).click();
@@ -108,27 +110,38 @@ public class SignUpPageTestRunner extends Setup {
         WebElement address = driver.findElement(By.id("autoComplete"));
         address.sendKeys("New York, NY 10036, USA");
         //filling up card info
+        WebElement paymentField = driver.findElement(By.id("stripe-element-mount-point"));
+        StringSelection stringSelection = new StringSelection("4242424242424242|04|2024|242");
+        // Get the system clipboard
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+        Thread.sleep(3000);
+//        paymentField.click();
+        Thread.sleep(3000);
+
+// Switch to the iframe element by index
+        driver.switchTo().frame(0);
+        WebElement cardNumber=driver.findElement(By.cssSelector("input[name='cardnumber']"));
+        WebElement cardExp=driver.findElement(By.cssSelector("input[name='exp-date']"));
+        WebElement cvc=driver.findElement(By.cssSelector("input[name='cvc']"));
+
         List<WebElement> cardInfo = driver.findElements(By.tagName("input"));
-        Thread.sleep(1000);
-        //filling up card number
-        cardInfo.get(1).sendKeys("4242424242424242");
-        cardInfo.get(1).sendKeys(Keys.ARROW_RIGHT);
-        Thread.sleep(500);
-        //filling up expire date
-        cardInfo.get(1).sendKeys("0424");
-        Thread.sleep(500);
-        cardInfo.get(1).sendKeys(Keys.ARROW_RIGHT);
-        //filling up cvc
-        cardInfo.get(1).sendKeys("242");
+       cardNumber.sendKeys(Keys.CONTROL + "v");
+        cardExp.sendKeys(Keys.CONTROL + "v");
+        cvc.sendKeys(Keys.CONTROL + "v");
+        // Switch back to the main frame
+        driver.switchTo().defaultContent();
+
+
         //clicking on pay button
         driver.findElements(By.tagName("button")).get(4).click();
         Thread.sleep(3000);
-        // Find the element that contains the text "Add Feeds"
-//        WebElement element = driver.findElement(By.xpath("//span[text()='Add Feeds']"));
-//
+//        // Find the element that contains the text "Add Feeds"
+//        WebElement element = driver.findElement(By.cssSelector("span:contains('Add Feeds')"));
+////        WebElement element = driver.findElement(By.xpath("//span[text()='Add Feeds']"));
+////
 //        String assertionMessage=element.getText();
 //        Assert.assertTrue(assertionMessage.contains("Add Feeds"));
-//        driver.findElement(By.cssSelector("span:contains('Send Code')")).click();
+////        driver.findElement(By.cssSelector("span:contains('Send Code')")).click();
 
     }
 }
