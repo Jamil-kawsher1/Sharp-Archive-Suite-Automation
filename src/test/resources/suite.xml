@@ -1,0 +1,13 @@
+<suite thread-count="1" verbose="1" name="Sharp Archive Suite">
+    <test name="SignUp Actions Automation">
+        <classes>
+            <class name="TestRunner.SignUpPageTestRunner"/>
+        </classes>
+    </test>
+    <test name="Login Action Automation">
+        <classes>
+            <class name="TestRunner.LogintestRunner"/>
+        </classes>
+    </test>
+
+</suite>

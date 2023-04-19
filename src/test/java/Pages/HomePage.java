@@ -1,5 +1,7 @@
 package Pages;
 
+import Utils.Utils;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.IOException;
 import java.util.List;
 
 public class HomePage {
@@ -70,12 +73,22 @@ public class HomePage {
     List<WebElement> allInput;
 
     @FindBy(css = "input[placeholder='Email']")
-     WebElement emailLogin;
+    WebElement emailLogin;
     @FindBy(css = "input[placeholder='Password']")
     WebElement passLogin;
 
 
-    public void signUp (String firstName, String lastName, String email, String businessName, String password, String category) throws InterruptedException {
+
+    //Add Feeds
+    //Website Add Url
+    @FindBy(css = "input[placeholder='Enter your URL']")
+    WebElement websiteUrl;
+    //Targeting Request Button
+    @FindBy(tagName = "button")
+    List <WebElement> allButton;
+
+
+    public void signUp (String firstName, String lastName, String email, String businessName, String password, String category) throws InterruptedException, IOException, ParseException {
         Thread.sleep(3000);
         cookieAcceptButton.get(35).click();
         signUp.get(0).click();
@@ -137,18 +150,34 @@ public class HomePage {
 
     }
 
-    public void doLogin () throws InterruptedException {
-    //login button
+    public void doLogin (String email,String password) throws InterruptedException {
+        //login button
         buttons.get(3).click();
         Thread.sleep(3000);
-    //email
-        emailLogin.sendKeys("shirleycollinse7@gmail.com");
+        //email
+        emailLogin.sendKeys(email);
 
-    //password
-        passLogin.sendKeys("wXh4b9BYmpw9pg2@");
+        //password
+        passLogin.sendKeys(password);
 
-    //click ol login Button
+        //click ol login Button
         buttons.get(34).click();
+
+    }
+
+    public void AddFeeds() throws InterruptedException {
+        Thread.sleep(8000);
+        //clicking on Website add Button
+        buttons.get(9).click();
+        websiteUrl.sendKeys("bdnews24.com");
+        Thread.sleep(500);
+        //Clicking on request button
+        allButton.get(7).click();
+        Thread.sleep(500);
+        //Clicking on back button
+        allButton.get(8).click();
+        Thread.sleep(1000);
+        allButton.get(6).click();
 
     }
 

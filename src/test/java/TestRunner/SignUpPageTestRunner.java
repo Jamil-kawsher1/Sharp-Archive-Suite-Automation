@@ -4,6 +4,7 @@ import Pages.HomePage;
 import Setup.Setup;
 import Utils.Utils;
 import com.github.javafaker.Faker;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -15,6 +16,7 @@ import org.testng.annotations.Test;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
 import java.util.List;
 
 public class SignUpPageTestRunner extends Setup {
@@ -45,7 +47,7 @@ public class SignUpPageTestRunner extends Setup {
     public String getPhoneOTP () throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         driver.switchTo().window((String) driver.getWindowHandles().toArray()[2]);
-        driver.get("https://receive-sms-online.cc/Free-US-Phone-Number-17404630034");
+        driver.get("https://receive-sms-online.cc/Free-US-Phone-Number-13312762635");
 
         Thread.sleep(6000);
         //clicking on Sms refresh button
@@ -63,7 +65,7 @@ public class SignUpPageTestRunner extends Setup {
 
 
     @Test(description = "Signup with valid Info")
-    public void doSignupWithValidInfo () throws InterruptedException {
+    public void doSignupWithValidInfo () throws InterruptedException, IOException, ParseException {
         homePage = new HomePage(driver);
         faker = new Faker();
 
@@ -95,7 +97,7 @@ public class SignUpPageTestRunner extends Setup {
         Thread.sleep(2000);
         homePage.otp.sendKeys(verificationCode);
         Thread.sleep(1000);
-        String desiredPhoneNumber = "7404630034";
+        String desiredPhoneNumber = "3312762635";
         driver.findElement((By.id("number-input"))).sendKeys(desiredPhoneNumber);
         Thread.sleep(3000);
         driver.findElements(By.tagName("button")).get(11).click();
@@ -134,12 +136,15 @@ public class SignUpPageTestRunner extends Setup {
 
         //clicking on pay button
         driver.findElements(By.tagName("button")).get(4).click();
-        Thread.sleep(3000);
+        Thread.sleep(10000);
+        String filename = "./src/test/resources/UsersList.json";
+        Utils.addIntoJsonList(filename, firstName, lastName, password, email);
 //        // Find the element that contains the text "Add Feeds"
-//        WebElement element = driver.findElement(By.cssSelector("span:contains('Add Feeds')"));
+      List  <WebElement> element = driver.findElements(By.tagName("span"));
 ////        WebElement element = driver.findElement(By.xpath("//span[text()='Add Feeds']"));
 ////
-//        String assertionMessage=element.getText();
+//        String assertionMessage=element.get(17).getText();
+//        System.out.println(assertionMessage);
 //        Assert.assertTrue(assertionMessage.contains("Add Feeds"));
 ////        driver.findElement(By.cssSelector("span:contains('Send Code')")).click();
 
