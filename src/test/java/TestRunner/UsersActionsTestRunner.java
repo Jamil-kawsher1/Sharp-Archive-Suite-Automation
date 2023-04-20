@@ -38,11 +38,16 @@ public class UsersActionsTestRunner extends Setup {
         homePage.profilePictureUpload();
 
     }
-@Test(priority = 3)
+@Test(priority = 3,description = "Update user Address")
     public void addressUpdate() throws InterruptedException {
         homePage=new HomePage(driver);
         homePage.addressUpdate();
         Utils.doScroll(driver,200);
         homePage.allButton.get(11).click();
+    }
+    @Test(priority = 4,description = "Logout from system")
+    public void doLogOut() throws InterruptedException {
+        homePage=new HomePage(driver);
+        homePage.doLogout();
     }
 }

@@ -233,5 +233,12 @@ public class HomePage {
 
     }
 
+    public  void doLogout() throws InterruptedException {
+        Thread.sleep(2000);
+        profileName.click();
+        Thread.sleep(3000);
+        buttons.get(8).click();
+    }
+
 
 }
