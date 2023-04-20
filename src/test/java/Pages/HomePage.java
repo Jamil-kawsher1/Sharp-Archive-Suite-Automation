@@ -172,8 +172,9 @@ public class HomePage {
         if (type.equals("valid")){
             System.out.println("hiited");
             Thread.sleep(2000);
-            emailLogin.clear();
-            passLogin.clear();
+            emailLogin.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+            passLogin.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+            Thread.sleep(2000);
         }
 
         Thread.sleep(3000);
