@@ -73,9 +73,9 @@ public class HomePage {
     List<WebElement> allInput;
 
     @FindBy(css = "input[placeholder='Email']")
-    WebElement emailLogin;
+  public   WebElement emailLogin;
     @FindBy(css = "input[placeholder='Password']")
-    WebElement passLogin;
+  public   WebElement passLogin;
 
 
 
@@ -85,12 +85,22 @@ public class HomePage {
     WebElement websiteUrl;
     //Targeting Request Button
     @FindBy(tagName = "button")
-    List <WebElement> allButton;
+    public List <WebElement> allButton;
 
 
     //Profile Controls
     @FindBy(className = "name-color")
     WebElement profileName;
+    @FindBy(className = "w-24")
+    WebElement profilePictureBorder;
+    @FindBy(tagName = "img")
+    List <WebElement> img;
+    @FindBy(css = "input[type='file']")
+    WebElement imageInput;
+
+    //address update
+    @FindBy(css = "input[placeholder='Enter a location']")
+    WebElement updatedAddressField;
 
     public void signUp (String firstName, String lastName, String email, String businessName, String password, String category) throws InterruptedException, IOException, ParseException {
         Thread.sleep(3000);
@@ -154,9 +164,18 @@ public class HomePage {
 
     }
 
-    public void doLogin (String email,String password) throws InterruptedException {
+    public void doLogin (String email,String password,String type) throws InterruptedException {
         //login button
-        buttons.get(3).click();
+        if (type.equals("invalid")||type.equals("vialogin")){
+            buttons.get(3).click();
+        }
+        if (type.equals("valid")){
+            System.out.println("hiited");
+            Thread.sleep(2000);
+            emailLogin.clear();
+            passLogin.clear();
+        }
+
         Thread.sleep(3000);
         //email
         emailLogin.sendKeys(email);
@@ -186,8 +205,30 @@ public class HomePage {
 
     }
 
-    public void profilePictureUpload(){
+    public void profilePictureUpload() throws InterruptedException {
         profileName.click();
+        Thread.sleep(1000);
+        profilePictureBorder.click();
+        Thread.sleep(2000);
+        String filename = "./src/test/resources/img/profileavatar.jpg";
+        imageInput.click();
+        Thread.sleep(2000);
+        imageInput.sendKeys(filename);
+
+
+
+    }
+
+    public void addressUpdate() throws InterruptedException {
+        profileName.click();
+        Thread.sleep(1000);
+
+        profilePictureBorder.click();
+        Thread.sleep(1000);
+        updatedAddressField.clear();
+        updatedAddressField.sendKeys(" Michigan Center, MI, USA");
+
+
 
     }
 

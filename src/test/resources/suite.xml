@@ -9,5 +9,9 @@
             <class name="TestRunner.LogintestRunner"/>
         </classes>
     </test>
-
+    <test name="Users Action Automation">
+        <classes>
+            <class name="TestRunner.UsersActionsTestRunner"/>
+        </classes>
+    </test>
 </suite>

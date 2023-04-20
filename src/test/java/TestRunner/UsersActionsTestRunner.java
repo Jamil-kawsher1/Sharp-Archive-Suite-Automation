@@ -21,20 +21,28 @@ public class UsersActionsTestRunner extends Setup {
         String filename = "./src/test/resources/UsersList.json";
         JSONObject userInfo = Utils.readJSONFile(filename, 1);
         homePage.cookieAcceptButton.get(35).click();
-        homePage.doLogin((String) userInfo.get("email"), "Eb9C*f\"A2om]nP2");
+        homePage.doLogin((String) userInfo.get("email"), "Eb9C*f\"A2om]nP2","vialogin");
     }
 
     @Test(priority = 1, description = "Add New Feed To User Accounts")
     public void addFeed () throws InterruptedException {
         homePage = new HomePage(driver);
+        Thread.sleep(5000);
         homePage.AddFeeds();
 
     }
 
-    @Test(priority = 2, description = "Upload User Profile picture")
-    public void uploadProfilePicture () {
+    @Test(priority = 2, description = "Upload User Profile picture",enabled = false)
+    public void uploadProfilePicture () throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.profilePictureUpload();
 
+    }
+@Test(priority = 3)
+    public void addressUpdate() throws InterruptedException {
+        homePage=new HomePage(driver);
+        homePage.addressUpdate();
+        Utils.doScroll(driver,200);
+        homePage.allButton.get(11).click();
     }
 }
