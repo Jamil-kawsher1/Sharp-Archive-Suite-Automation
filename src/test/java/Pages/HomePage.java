@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -211,20 +212,17 @@ public class HomePage {
         Thread.sleep(1000);
         profilePictureBorder.click();
         Thread.sleep(2000);
-        String filename = "./src/test/resources/img/profileavatar.jpg";
-        imageInput.click();
+        File imageFile = new File("src/test/resources/img/profileavatar.webp");
+
         Thread.sleep(2000);
-        imageInput.sendKeys(filename);
+        imageInput.sendKeys(imageFile.getAbsolutePath());
 
 
 
     }
 
     public void addressUpdate() throws InterruptedException {
-        profileName.click();
-        Thread.sleep(1000);
 
-        profilePictureBorder.click();
         Thread.sleep(1000);
         updatedAddressField.clear();
         updatedAddressField.sendKeys(" Michigan Center, MI, USA");

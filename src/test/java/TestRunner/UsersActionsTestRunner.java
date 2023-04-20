@@ -32,7 +32,7 @@ public class UsersActionsTestRunner extends Setup {
 
     }
 
-    @Test(priority = 2, description = "Upload User Profile picture",enabled = false)
+    @Test(priority = 2, description = "Upload User Profile picture",enabled = true)
     public void uploadProfilePicture () throws InterruptedException {
         homePage = new HomePage(driver);
         homePage.profilePictureUpload();
