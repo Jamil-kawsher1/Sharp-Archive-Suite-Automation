@@ -35,9 +35,10 @@
 
 
 ## Test Case:
+https://docs.google.com/spreadsheets/d/1GctPO2F9K77DsKqeCHI8szQO0tTtWXI5-Pvn1SbkgGQ/edit?usp=sharing
 
 ## Bug Report:
-
+https://docs.google.com/spreadsheets/d/1YwH5qbo6dHxRQdBxqzyoRMsBoA3C6_61/edit?usp=sharing&ouid=105413695096846736430&rtpof=true&sd=true
 
 # Allure report Screenshots
 
